@@ -1,16 +1,29 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+button {
+  width: 150px;
+  height: 30px;
+  margin: 0 10px;
+  font-size: 12pt;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
 }
 
-.App-header {
+button:active {
+  background: #9e9e9e;
+  color: white;
+}
+
+.App-header,
+.App-footer {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,15 +32,214 @@
   color: white;
 }
 
+.App-main {
+  display: flex;
+  flex: 1 1 100%;
+  font-size: calc(10px + 2vmin);
+  padding: 20px 0;
+  justify-content: center;
+}
+
+.App-footer {
+  justify-self: end;
+  padding: 20px 0;
+  background-color: #282c34;
+}
+
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
+.App-stepmeter {
+  width: 700px;
+}
+
+.progressbar {
+  width: 100%;
+}
+
+progress[value] {
+  height: 5px;
+  margin: 5px 0;
+  display: block;
+  /* Important Thing */
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: lightgray;
+  border-radius: 5px;
+  box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.2);
+}
+
+progress[value]::-webkit-progress-value {
+  border-radius: 5px;
+  -webkit-transition: width 0.5s ease;
+  -moz-transition: width 0.5s ease;
+  -o-transition: width 0.5s ease;
+  transition: width 0.5s ease;
+}
+
+.stepmeter {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10pt;
+}
+
+.step-title {
+  color: grey;
+  transition: color 0.5s;
+}
+
+.step-active {
+  color: black;
+}
+
+.step-active:last-child {
+  color: red;
+}
+
+.App-stepframe {
+  position: relative;
+  height: 500px;
+  width: 700px;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+
+.inputbox {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+  margin: 20px 0;
+}
+
+.inputbox label,
+.inputbox span {
+  text-align: left;
+}
+
+.inputbox input,
+.inputbox textarea {
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 0;
+  border-bottom: 1px dashed gray;
+  background: #f1f1f1;
+  box-sizing: border-box;
+}
+
+.inputbox input:focus,
+.inputbox textarea:focus {
+  outline: 0;
+  border-bottom: 2px solid gray;
+}
+
+.App-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(2, calc(100% / 2));
+  grid-template-rows: auto;
+  grid-column-gap: 10px;
+}
+
+.theme-grid-item {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #4e4e4e;
+  color: white;
+  font-size: 12pt;
+  line-height: 2em;
+}
+
+.theme-grid-item.selected {
+  outline: 5px solid yellow;
+}
+
+.theme-grid-item img {
+  width: auto;
+  height: 200px;
+}
+
+.App-publish-summary {
+  font-size: 10pt;
+}
+
+.App-result-title.successful {
+  color: #00CC44;
+}
+
+.App-result-title.error {
+  color: red;
+}
+
+.App-result{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.doughnut-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.doughnut-wrapper {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translate3d(0, 0, 0);
+  animation: bounce 1s infinite forwards;
+}
+
+.doughnut-svg {
+  width: 15rem;
+  outline: 0.5rem solid transparent;
+  transform-origin: 50% 50%;
+  animation: roll 2s cubic-bezier(1, 0, 0.4, 1) infinite;
+}
+
+.doughnut-loading-text {
+  animation: fade 2s cubic-bezier(1, 0, 0.4, 1) infinite, shadow 1s infinite;
+}
+
+.doughnut-shadow {
+  width: 9rem;
+  height: 0.6rem;
+  margin: 0 auto;
+  background-color: #333;
+  border-radius: 100%;
+  opacity: 0.35;
+  animation: shadow 1s infinite;
+}
+
+@keyframes roll {
+  100% {
     transform: rotate(360deg);
+  }
+}
+@keyframes bounce {
+  50% {
+    transform: translate3d(0, -8%, 0);
+  }
+}
+
+@keyframes fade {
+  50% {
+    opacity: .1;
+  }
+}
+
+@keyframes shadow {
+  50% {
+    opacity: 0.3;
+    transform: scale(0.9);
   }
 }
